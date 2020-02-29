@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Signup = props => {
   const [cc, setCC] = useState("");
   const [password, setPassword]
-  const [nextStep, setNextStep] = useState(false);
+  const [nextStep, setNextStep] = useState(true);
   handleSubmit = () => {
     MY_SERVICE.signup({cc, password});
     setNextStep(true);
