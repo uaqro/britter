@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import MY_SERVICE from "../services/index";
 import styled from "styled-components";
 
 const Signup = props => {
-  const [singupForm, setSignupForm] = useState({
+  const [signupForm, setSignupForm] = useState({
     name: "",
     email: "",
     bankAccount: "",
@@ -12,7 +13,7 @@ const Signup = props => {
   });
   const [nextStep, setNextStep] = useState(false);
   handleSubmit = () => {
-    MY_SERVICE.Singup(signupForm);
+    MY_SERVICE.signup(signupForm);
     setNextStep(true);
   };
   return (

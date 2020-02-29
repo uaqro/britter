@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
-const PLM = require("passport-local-mongoose");
 
-const userSchema = new Schema(
+const spendGoal = new Schema(
   {
     name: String,
     cc: String,
