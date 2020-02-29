@@ -5,7 +5,8 @@ const spendGoal = new Schema(
     object: String,
     goal: Number,
     currentSaving: { type: Number, default: 0 },
-    status: { type: Boolean, default: true }
+    status: { type: Boolean, default: true },
+    daysToGoal: { type: Number, default: 1 }
   },
   {
     timestamps: true,

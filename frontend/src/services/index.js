@@ -5,23 +5,30 @@ process.env.NODE_ENV === "production"
   ? (baseURL = "here should be your production endpoint")
   : (baseURL = "http://localhost:3000");
 
-const service = axios.create({ withCredentials: true, baseURL });
+const serviceNode = axios.create({ withCredentials: true, baseURL });
+const serviceFlask = axios.create({withCredentials:true, "FLASK ENDPOINT"})
 
 const MY_SERVICE = {
   test: async () => {
-    return await service.get("/");
+    return await serviceNode.get("/");
   },
   signup: async user => {
-    return await service.post("/signup", user);
+    return await serviceNode.post("/signup", user);
   },
   login: async user => {
-    return await service.post("/login", user);
+    return await serviceNode.post("/login", user);
   },
   logOut: async () => {
-    return await service.get("/logout");
+    return await serviceNode.get("/logout");
   },
   recommendations: async frm => {
-    return await service.post("/get-recommendations", frm);
+    return await serviceFlask.post("/get-recommendations", frm);
+  },
+  newGoal: async gls =>{
+    return await serviceNode.post("/new-goal", gls)
+  },
+  checkGoalObject: async obj =>{
+    return await serviceFlask.post("/check", obj)
   }
 };
 
