@@ -2,31 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const spendGoal = new Schema(
   {
-    name: String,
-    cc: String,
-    balance: String,
-    clientNumber: String,
-    fixedIncome: Number,
-    fixedSpend: Number,
-    SavingObj: Number,
-    level: Number,
-    spendGoals: [Schema.ObjectId],
-    saveGoals: [
-      {
-        fund: Schema.ObjectId,
-        savings: { qty: Number, date: Date },
-        goal: Number
-      }
-    ],
-    dailyBudget: {
-      monday: Number,
-      tuesday: Number,
-      wednesday: Number,
-      thursday: Number,
-      friday: Number,
-      saturday: Number,
-      sunday: Number
-    }
+    object: String,
+    goal: Number,
+    currentSaving: { type: Number, default: 0 },
+    status: { type: Boolean, default: true }
   },
   {
     timestamps: true,
@@ -34,6 +13,4 @@ const spendGoal = new Schema(
   }
 );
 
-userSchema.plugin(PLM, { usernameField: "email" });
-
-module.exports = model("User", userSchema);
+module.exports = model("spendGoal", spendGoal);

@@ -35,6 +35,6 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.plugin(PLM, { usernameField: "email" });
+userSchema.plugin(PLM, { usernameField: "cc" });
 
 module.exports = model("User", userSchema);
