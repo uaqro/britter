@@ -7,7 +7,7 @@ import Goals from './pages/Goal/Goals';
 import UserProfile from './pages/profile/UserProfile';
 // import {ProtectedRoute} from './pages/ProtectedRoutes';
 import NotFound from './pages/404/NotFound.js';
-
+import Logo from './components/Logo/Logo';
 const Router = () => (
 	<BrowserRouter>
 		<Switch>

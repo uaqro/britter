@@ -3,18 +3,9 @@ const User = require("../models/User");
 const axios = require("axios");
 const spendGoal = require("../models/spendGoal");
 const baseHSBC = "https://mwiuw3q1fj.execute-api.us-east-1.amazonaws.com/dev";
-const service = axios.create({ withCredentials: true, baseHSBC });
 
 router.get("/", (req, res, next) => {
   res.status(200).json({ msg: "Working" });
-});
-router.post("/new-goal", async (req, res) => {
-  const { goal, object, daysToGoal } = req.body;
-  const goal2 = await spendGoal.create({ object, goal, daysToGoal });
-  const usr = await User.findByIdAndUpdate(req.user._id, {
-    $push: { spendGoals: goal2._id }
-  }).populate("spendGoals");
-  res.status(201).json({ usr });
 });
 
 router.post("/update-goal", async (req, res) => {
@@ -36,6 +27,17 @@ router.post("/update-goal", async (req, res) => {
     const usr = await User.findById(req.user._id).populate("spendGoals");
     res.status(201).json({ usr });
   }
+});
+router.post("/new-goal", async (req, res) => {
+  const { goal, object } = req.body;
+  const usr = await User.findById(req.user._id);
+  usr.spendGoals.push({
+    object,
+    goal,
+    currentSavings: 0
+  });
+  usr.save();
+  res.status(201).json({ usr });
 });
 
 router.post("/calc-goal", (req, res) => {

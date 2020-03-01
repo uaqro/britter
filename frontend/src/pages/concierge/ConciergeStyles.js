@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const ConciergeStyles = styled.div`
-	.main-logo {
+	/* .main-logo {
 		left: 50%;
 		position: absolute;
 		top: 30px;
 		transform: translate(-50%, 0);
 		z-index: 10;
-	}
+	} */
 	.card {
 		width: 280px;
 		background: white;

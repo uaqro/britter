@@ -9,6 +9,8 @@ const c_darkOrange = '#e6a71e';
 const c_orange = '#ffcb5a';
 
 export const UserProfileStyles = styled.div`
+	padding:100px 0 0 0;
+
 	* {
 		box-sizing: border-box;
 	}

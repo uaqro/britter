@@ -55,7 +55,7 @@ export default class UserProfile extends Component {
 	render() {
 		return (
 			<UserProfileStyles>
-				<img src={Britter} alt="Britter Logo" className="main-logo" />
+				{/* <img src={Britter} alt="Britter Logo" className="main-logo" /> */}
 				<h1 className="section-title">Tu Perfil</h1>
 				<div className="profile-card">
 					<div

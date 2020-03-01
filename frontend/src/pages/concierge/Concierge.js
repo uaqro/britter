@@ -35,11 +35,6 @@ const Concierge = props => {
 		<>
 			{ask ? (
 				<ConciergeStyles>
-					<img
-						src={Britter}
-						alt="Britter Logo"
-						className="main-logo"
-					/>
 					<div className="card search">
 						<img className="mapGo" src={MapGo} alt="Map Icon" />
 						{/* <p>¿Qué quieres hacer hoy?</p> */}
