@@ -1,28 +1,35 @@
-const { Schema, model } = require("mongoose");
-const PLM = require("passport-local-mongoose");
+const { Schema, model } = require('mongoose');
+const PLM = require('passport-local-mongoose');
 
 const userSchema = new Schema(
-  {
-    name: String,
-    cc: String,
-    email: String,
-    balance: String,
-    clientNumber: String,
-    fixedIncome: Number,
-    fixedSpend: Number,
-    SavingObj: Number,
-    level: Number,
-    spendGoals: [Schema.ObjectId]
-  },
-  {
-    timestamps: true,
-    versionKey: false
-  }
+	{
+		name: String,
+		rfc: String,
+		currency: String,
+		originalBalance: String,
+		level: Number,
+		coins: Number,
+		accountNumber: Number,
+		welcome: Boolean,
+		cc: String,
+		email: String,
+		balance: String,
+		clientNumber: String,
+		fixedIncome: Number,
+		fixedSpend: Number,
+		SavingObj: Number,
+		level: Number,
+		spendGoals: [Schema.ObjectId]
+	},
+	{
+		timestamps: true,
+		versionKey: false
+	}
 );
 
-userSchema.plugin(PLM, { usernameField: "email" });
+userSchema.plugin(PLM, { usernameField: 'email' });
 
-module.exports = model("User", userSchema);
+module.exports = model('User', userSchema);
 
 // saveGoals: [
 //   {
