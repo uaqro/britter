@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import GoalModal from './GoalModal';
 import { MyContext } from '../../contexts/context';
 import { ModalContext } from '../../contexts/modalContext';
@@ -16,9 +16,14 @@ const Goals = props => {
 								<div className="titulo">
 									<p>Tus metas</p>
 								</div>
-								{context.user.spendGoals.map(element => (
-									<ElementBox goal={element} />
-								))}
+								{context.user.spendGoals.map(
+									(element, index) => (
+										<ElementBox
+											goal={element}
+											key={index}
+										/>
+									)
+								)}
 								{context.user.spendGoals.length < 3 ? (
 									<ModalButton onClick={modalctx.setShow}>
 										Añadir Objetivo

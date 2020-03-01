@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ModalContext } from '../../contexts/modalContext';
+import { Button } from 'grommet';
 
 const GoalModalSettings = () => {
 	const modalctx = useContext(ModalContext);
@@ -15,12 +16,18 @@ const GoalModalSettings = () => {
 				<>
 					<p>{`Ahorra ${modalctx.dailyPay} durante ${modalctx.daysToGoal} días para comprar tu ${modalctx.object}.`}</p>
 					<div className="buttons">
-						<button onClick={() => modalctx.submitGoal()}>
+						<Button
+							onClick={() => modalctx.setShow()}
+							color={{ border: 'accent-1' }}
+						>
+							¿Te rajas?
+						</Button>
+						<Button
+							onClick={() => modalctx.submitGoal()}
+							color={{ border: 'status-critical' }}
+						>
 							Quiero conseguirlo!
-						</button>
-						<button onClick={() => modalctx.setShow()}>
-							Pussy
-						</button>
+						</Button>
 					</div>
 				</>
 			)}

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import GoalModalObj from './GoalModalObj';
 import GoalModalSettings from './GoalModalSettings';
 import GoalModalCongratz from './GoalModalCongratz';

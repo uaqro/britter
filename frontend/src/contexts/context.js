@@ -50,8 +50,6 @@ class MyProvider extends Component {
 		}
 	}
 
-	componentDidMount() {}
-
 	async isLogged() {
 		const user = await MY_SERVICE.isLogged();
 		this.setState({ user });

@@ -5,6 +5,9 @@ export const ElementBoxStyles = styled.div`
 	height: 150px;
 	width: 100%;
 	border: 1px solid black;
+	svg {
+		width: 150px;
+	}
 `;
 
 export const BoxButton = styled.button`
