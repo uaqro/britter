@@ -15,6 +15,7 @@ const Goals = props => {
 							<GoalsBox>
 								<div className="titulo">
 									<p>Tus metas</p>
+									<p className="smaller">A corto plazo</p>
 								</div>
 								{context.user.spendGoals.map(
 									(element, index) => (

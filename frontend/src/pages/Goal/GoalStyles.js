@@ -5,7 +5,8 @@ export const GoalsLayout = styled.div`
 	width: 100vw;
 	display: flex;
 	justify-content: center;
-	margin:60px 0;
+	margin: 0;
+	padding: 60px 0;
 `;
 export const GoalsBox = styled.div`
 	display: flex;
@@ -13,9 +14,27 @@ export const GoalsBox = styled.div`
 	flex-direction: column;
 	width: 90%;
 	.titulo {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: flex-start;
+		text-align: left;
+		padding-left: 30px;
 		width: 100%;
 		display: flex;
+		margin-top: 30px;
+		font-size: 20px;
+		font-weight: bold;
+		color: #42445e;
 		box-sizing: border-box;
+		p {
+			margin: 0;
+			text-align: left;
+			width: 100%;
+			&.smaller {
+				font-size: 16px;
+			}
+		}
 	}
 `;
 export const ModalButton = styled.button`
