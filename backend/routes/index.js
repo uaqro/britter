@@ -40,4 +40,16 @@ router.post("/update-goal", async (req, res) => {
   }
 });
 
+router.post("/congratz", (req, res) => {
+  const usr = User.findById(req.user._id);
+  const sms = {
+    mobilePhoneNumber: usr.mobilePhoneNumber,
+    message: `Empieza tu compromiso ${usr.name}! Sé fuerte durante ${
+      usr.spendGoals[usr.spendGoals.length].daysToGoal
+    } días para conseguir tu ${goal.object}`
+  };
+  service.post("/v1/sandbox/messaging-services/sms", sms);
+  res.status(201).json({ msg: "Sent!" });
+});
+
 module.exports = router;

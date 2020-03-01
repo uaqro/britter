@@ -24,6 +24,12 @@ const MY_SERVICE = {
   logOut: async () => {
     return await serviceNode.get("/logout");
   },
+  isLogged: async () => {
+    return await serviceNode.get("/loggedin");
+  },
+  congratz: async () => {
+    return await serviceNode.post("/congratz");
+  },
   recommendations: async frm => {
     return await serviceFlask.post("/get-recommendations", frm);
   },

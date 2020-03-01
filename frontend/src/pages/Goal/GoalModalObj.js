@@ -1,26 +1,17 @@
-import MY_SERVICE from "../services";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ModalContext } from "../../contexts/modalContext";
 
-const GoalModalObj = ({
-  handleInputs,
-  goal,
-  stepping,
-  checkBudget,
-  handleClose
-}) => {
-  const [goal, setGoal] = useState({ daysToGoal: 0, object: "" });
-
-  const handleInputs = evt =>
-    setGoal({ ...goal, [evt.target.name]: evt.target.value });
-
+const GoalModalObj = () => {
+  const modalctx = useContext(ModalContext);
+  const [object, setObject] = useState("");
   return (
-    <div className={handleShow}>
+    <div>
       <p>¿Qué te quieres comprar?</p>
       <input
         type="text"
         name="object"
         list="prods"
-        onChange={evt => handleInputs(evt)}
+        onChange={evt => setObject(evt.target.value)}
       />
       <datalist id="prods">
         <option value="Moto" />
@@ -31,13 +22,13 @@ const GoalModalObj = ({
       </datalist>
       <button
         onClick={() => {
-          stepping(false);
-          checkBudget(goal);
+          modalctx.stateHandler("step", 1);
+          modalctx.checkBudget(object);
         }}
       >
         Next Step
       </button>
-      <button onClick={() => handleClose()}>Close</button>
+      <button onClick={() => modalctx.setShow()}>Close</button>
     </div>
   );
 };

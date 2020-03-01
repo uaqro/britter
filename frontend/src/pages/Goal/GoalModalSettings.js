@@ -1,23 +1,22 @@
-import MY_SERVICE from "../services";
-import React, { useState } from "react";
-
-const GoalModalSettings = ({ credit, price, handleInputs, handleClose }) => {
+import React, { useState, useContext } from "react";
+import { ModalContext } from "../../contexts/modalContext";
+const GoalModalSettings = () => {
+  const modalctx = useContext(ModalContext);
+  const [budget, setBudget] = useState(0);
   return (
-    <div className={handleShow}>
-      <form onSubmit={() => MY_SERVICE.newGoal(goal)}>
-        <input
-          type="text"
-          name="object"
-          onChange={evt => handleInputs(evt)}
-          onBlur={evt => checkBudget(evt.target.value)}
-        />
-        <input type="number" name="goal" onChange={evt => handleInputs(evt)} />
-        <input
-          type="number"
-          name="daysToGoal"
-          onChange={evt => handleInputs(evt)}
-        />
-      </form>
+    <div>
+      <p>{`Te recomendamos gastar ${modalctx.price}$MXN en tu ${modalctx.object}`}</p>
+      <p>¿Cuánto quieres gastar?</p>
+      <input type="number" onChange={evt => setBudget(evt.target.value)} />
+      <button
+        onClick={evt => {
+          modalctx.stateHandler("step", 2);
+          modalctx.setGoal(modalctx.object, budget);
+        }}
+      >
+        Continuar
+      </button>
+      <button onClick={() => modalctx.setShow()}>Cerrar</button>
     </div>
   );
 };

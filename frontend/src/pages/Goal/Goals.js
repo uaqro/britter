@@ -1,29 +1,32 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
-import MY_SERVICE from "../../services/index";
-import styled from "styled-components";
-const GoalCard = styled.div``;
+import React, { useContext } from "react";
+import GoalModal from "./GoalModal";
+import { MyContext } from "../../contexts/context";
+import { ModalContext } from "../../contexts/modalContext";
+import ElementBox from "./ElementBox/ElementBox";
+import { GoalsLayout } from "./GoalStyles";
 
 const Goals = props => {
-  const [modalHandler, setModal] = useState(false);
   return (
     <GoalsLayout>
-      {ctx.user.spendGoals.map(element => (
-        <>
-          <GoalCard goal={element} />
-          <button onClick={() => MY_SERVICE.updateGoal(element._id, dayli)}>
-            {`Add ${dailySaving}`}
-          </button>
-        </>
-      ))}
-      {ctx.user.spendGoals.length < 3 ? (
-        <GoalModal
-          show={modalHandler}
-          handle={setModal}
-          onClick={() => setModal(!modalHandler)}
-        />
-      ) : (
-        <></>
-      )}
+      <MyContext.Consumer>
+        {context => (
+          <ModalContext.Consumer>
+            {modalctx => (
+              <>
+                {context.user.spendGoals.map(element => (
+                  <ElementBox goal={element} />
+                ))}
+                {context.user.spendGoals.length < 3 ? (
+                  <button onClick={modalctx.setShow}>Añadir goal</button>
+                ) : (
+                  <></>
+                )}
+                <GoalModal />
+              </>
+            )}
+          </ModalContext.Consumer>
+        )}
+      </MyContext.Consumer>
     </GoalsLayout>
   );
 };

@@ -1,52 +1,41 @@
-import MY_SERVICE from "../services";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import GoalModalObj from "./GoalModalObj";
 import GoalModalSettings from "./GoalModalSettings";
+import GoalModalCongratz from "./GoalModalCongratz";
+import GoalModalSubmit from "./GoalModalSubmit";
+import { ModalContext } from "../../contexts/modalContext";
+import styled from "styled-components";
 
-const GoalModal = ({ show, handle }) => {
-  const handleShow = show ? "modal display-block" : "modal display-none";
+const Wrapper = styled.div`
+  .display-block {
+  }
+  .display-none {
+    display: none;
+  }
+`;
 
-  const [goal, setGoal] = useState({ daysToGoal: 0, object: "", goal: 0 });
-  const [priceRecommendation, setPriceRecommendation] = useState(0);
-  const [creditValues, setCreditValues] = useState({
-    interest: "",
-    enganche: "",
-    appliesForCredit: false
-  });
-  const [step, setStep] = useState(true);
-  const handleInputs = evt =>
-    setGoal({ ...goal, [evt.target.name]: evt.target.value });
-  const checkBudget = val => {
-    const recommendation = MY_SERVICE.checkGoalObject(val);
-    setPriceRecommendation(recommendation.price);
-    appliesForCredit
-      ? setCreditValues({
-          appliesForCredit: true,
-          interest: recommendation.interest,
-          enganche: recommendation.enganche
-        })
-      : null;
-  };
+const GoalModal = () => {
+  const modalctx = useContext(ModalContext);
+  const handleShow = modalctx.show
+    ? "modal display-block"
+    : "modal display-none";
+
   return (
-    <div className={handleShow}>
-      {step ? (
-        <GoalModalObj
-          stepping={setStep}
-          checkGoal={checkGoal}
-          handleInputs={handleInputs}
-          checkBudget={checkBudget}
-          goal={goal}
-          handleClose={handleClose}
-        />
-      ) : (
-        <GoalModalSettings
-          credit={creditValues}
-          price={priceRecommendation}
-          handleInputs={handleInputs}
-          handleClose={handleClose}
-        />
-      )}
-    </div>
+    <Wrapper>
+      <div className={handleShow}>
+        {modalctx.step === 0 ? (
+          <GoalModalObj />
+        ) : modalctx.step === 1 ? (
+          <GoalModalSettings />
+        ) : modalctx.step === 2 ? (
+          <GoalModalSubmit />
+        ) : modalctx.step === 3 ? (
+          <GoalModalCongratz />
+        ) : (
+          <></>
+        )}
+      </div>
+    </Wrapper>
   );
 };
 
