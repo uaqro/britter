@@ -8,6 +8,26 @@ import HeartBeat from '../../assets/heart-beat.svg';
 
 export default class UserProfile extends Component {
 	state = {
+		challenges: [
+			{
+				goal: 7,
+				position: 4,
+				status: 'in progress',
+				title: 'No falles ningún día durante una semana'
+			},
+			{
+				goal: 2,
+				position: 2,
+				status: 'completed',
+				title: 'Ahorra voluntariamente 2 veces en una semana'
+			},
+			{
+				goal: 1,
+				position: 0,
+				status: 'failed',
+				title: 'Gasta menos o igual a lo recomendado'
+			}
+		],
 		user: {
 			name: 'Rodrigo García',
 			level: 1,
@@ -17,8 +37,8 @@ export default class UserProfile extends Component {
 		}
 	};
 
-	getPercentage() {
-		return (this.state.user.coins / this.state.user.nextLevel) * 100;
+	getPercentage(current, goal) {
+		return (current / goal) * 100;
 	}
 
 	render() {
@@ -50,7 +70,9 @@ export default class UserProfile extends Component {
 								<div
 									className="actual-meter"
 									style={{
-										width: `${this.getPercentage()}%`
+										width: `${this.getPercentage(
+											this.state.user.coins
+										)}%`
 									}}
 								></div>
 							</div>
@@ -71,6 +93,9 @@ export default class UserProfile extends Component {
 						</div>
 					</div>
 				</div>
+				{this.state.challenges.map((item, index) => {
+					return <div className="goal-card" key={index}></div>;
+				})}
 			</UserProfileStyles>
 		);
 	}
