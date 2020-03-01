@@ -5,6 +5,7 @@ export const GoalsLayout = styled.div`
 	width: 100vw;
 	display: flex;
 	justify-content: center;
+	margin:60px 0;
 `;
 export const GoalsBox = styled.div`
 	display: flex;

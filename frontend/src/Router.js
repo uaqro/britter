@@ -8,8 +8,11 @@ import UserProfile from './pages/profile/UserProfile';
 // import {ProtectedRoute} from './pages/ProtectedRoutes';
 import NotFound from './pages/404/NotFound.js';
 import Logo from './components/Logo/Logo';
+import Navbar from './components/Nav/Nav';
 const Router = () => (
 	<BrowserRouter>
+	<Navbar/>
+		<Logo/>
 		<Switch>
 			<Route exact path="/" component={Concierge} />
 			<Route exact path="/signup" component={Signup} />
