@@ -4,73 +4,20 @@ import MY_SERVICE from "../services/index";
 import styled from "styled-components";
 
 const Signup = props => {
-  const [signupForm, setSignupForm] = useState({
-    name: "",
-    email: "",
-    bankAccount: "",
-    password: "",
-    image: ""
-  });
-  const [nextStep, setNextStep] = useState(false);
+  const [cc, setCC] = useState("");
+  const [password, setPassword]
+  const [nextStep, setNextStep] = useState(true);
   handleSubmit = () => {
-    MY_SERVICE.signup(signupForm);
+    MY_SERVICE.signup({cc, password});
     setNextStep(true);
   };
   return (
     <>
       {nextStep ? (
         <SignUpForm onSubmit={() => handleSubmit()}>
-          <input
-            type="text"
-            name="name"
-            onChange={evt =>
-              setSignupForm({
-                ...signUpForm,
-                [evt.target.name]: evt.target.value
-              })
-            }
-          />
-          <input
-            type="email"
-            name="email"
-            onChange={evt =>
-              setSignupForm({
-                ...signUpForm,
-                [evt.target.name]: evt.target.value
-              })
-            }
-          />
-          <input
-            type="password"
-            name="password"
-            onChange={evt =>
-              setSignupForm({
-                ...signUpForm,
-                [evt.target.name]: evt.target.value
-              })
-            }
-          />
-          <input
-            type="text"
-            name="bankAccount"
-            onChange={evt =>
-              setSignupForm({
-                ...signUpForm,
-                [evt.target.name]: evt.target.value
-              })
-            }
-          />
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={evt =>
-              setSignupForm({
-                ...signUpForm,
-                [evt.target.name]: evt.target.value
-              })
-            }
-          />
+          <p>Regístrate con tu cuenta HSBC</p>
+          <input type="text" onChange={evt=>setCC(evt.target.value)}/>
+          <input type="password" onChange={evt=>setPassword(evt.target.value)}/>
           <button>Register</button>
         </SignUpForm>
       ) : (
