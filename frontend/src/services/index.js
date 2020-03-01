@@ -20,6 +20,10 @@ const MY_SERVICE = {
   logOut: async () => {
     return await service.get("/logout");
   },
+  getUser: async () => {
+    return await service.get('/loggedin');
+  }
+  ,
   recommendations: async frm => {
     return await service.post("/get-recommendations", frm);
   },

@@ -1,19 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-// import Home from './pages/home/Home';
 import Concierge from './pages/concierge/Concierge';
-import UserProfile from './pages/profile/UserProfile';
-// import NotFound from './components/404/NotFound.js';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
+// import {ProtectedRoute} from './pages/ProtectedRoutes';
+import NotFound from './pages/404/NotFound.js';
 
 const Router = () => (
-	<BrowserRouter>
-		<Switch>
-			{/* <Route exact path="/" component={Home} /> */}
-			<Route exact path="/con" component={Concierge} />
-			<Route exact path="/profile" component={UserProfile} />
-			{/* <Route component={NotFound} /> */}
-		</Switch>
-	</BrowserRouter>
+  <BrowserRouter>
+    <Switch>
+      <Route exact path='/' component={Concierge} />
+      <Route exact path="/signup" component={Signup}/>
+      <Route exact path="/login" component={Login}/>
+      <Route path='*' component={NotFound}/>
+    </Switch>
+  </BrowserRouter>
 );
 
 export default Router;

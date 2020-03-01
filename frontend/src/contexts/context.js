@@ -1,11 +1,33 @@
 import React, { Component, createContext } from "react";
-import MY_SERVICE from "../services/index.js";
+import MY_SERVICE from "../services/index";
+
 export const MyContext = createContext();
 
 class MyProvider extends Component {
   state = {
     user: { name: "", cc: "" },
-    location: { longitude:0, latitude:0 }
+    loginForm: {
+      email: "",
+      password: ""
+    },
+    formSignup: {
+      email: "",
+      password: "",
+      cc: "",
+    },
+    location: { longitude:0, latitude:0 },
+    loggedUser: {}, 
+  };
+
+  componentDidMount() {
+    if (document.cookie) {
+      MY_SERVICE.getUser()
+        .then(({ msg }) => {
+          console.log(msg)
+          this.setState({ loggedUser: true});
+        })
+        .catch(err => console.log(err));
+    }
   };
 
   handleLocation(longitude, latitude){
@@ -19,10 +41,26 @@ class MyProvider extends Component {
     console.log(this.state.location);
     await MY_SERVICE.uploadProduct(this.state.location);
   }
+
+  update = (prevState, payload) => {
+    this.setState({
+        ...prevState,
+        // formSignup:{
+        //     ...prevState.formSignup,
+        //     ...payload
+        // },
+        loginForm: {
+          ...prevState.loginForm,
+          ...payload
+        }
+    })
+  }
+
   render() {
     return (
       <MyContext.Provider value={{
         handleLocation:this.handleLocation,
+        updateAction:this.update,
         state: this.state
       }}>{this.props.children}</MyContext.Provider>
     );
