@@ -27,9 +27,6 @@ const MY_SERVICE = {
 	isLogged: async () => {
 		return await serviceNode.get('/loggedin');
 	},
-	congratz: async () => {
-		return await serviceNode.post('/congratz');
-	},
 	getUser: async () => {
 		return await serviceNode.get('/loggedin');
 	},
@@ -48,11 +45,9 @@ const MY_SERVICE = {
 	},
 	updateGoal: async (gl, sv) => {
 		const goal = { gl, sv };
-		console.log('aquí bn');
 		return await serviceNode.post('/update-goal', { goal });
 	},
 	getGoalStats: async gls => {
-		console.log('aquí bn');
 		return await serviceNode.post('/calc-goal', { gls });
 	}
 };

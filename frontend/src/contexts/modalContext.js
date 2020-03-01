@@ -32,7 +32,6 @@ class ModalProvider extends Component {
 		this.setState({ submitedGoal: goal });
 		MY_SERVICE.newGoal(goal);
 		MY_SERVICE.isLogged();
-		MY_SERVICE.congratz();
 		this.setState({ step: 3 });
 	};
 

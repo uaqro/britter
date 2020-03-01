@@ -40,14 +40,16 @@ router.post("/update-goal", async (req, res) => {
   }
 });
 router.post("/new-goal", async (req, res) => {
-  const { goal, object } = req.body;
+  const { goal } = req.body;
+  const gl = await spendGoal.create(goal);
   const usr = await User.findById(req.user._id);
-  usr.spendGoals.push({
-    object,
-    goal,
-    currentSavings: 0
-  });
+  usr.spendGoals.push(gl._id);
   usr.save();
+  const sms = {
+    mobilePhoneNumber: usr.mobilePhoneNumber,
+    message: `Felicidades ${usr.name}! Sé fuerte los próximos días y lograrás tu ${gl.object}`
+  };
+  instance.post("/v1/sandbox/messaging-services/sms", { sms });
   res.status(201).json({ usr });
 });
 
@@ -106,9 +108,14 @@ router.post("/check", (req, res) => {
 });
 
 router.post("/congratz", (req, res) => {
-  const usr =
-    User.findById(req.user._id) / v1 / sandbox / messaging - services / sms;
-  const sms = { mobile };
+  const { obj } = req.body;
+  const usr = User.findById(req.user._id);
+
+  const sms = {
+    mobilePhoneNumber: usr.mobilePhoneNumber,
+    message: `Felicidades ${usr.name}! Sé fuerte los próximos días y lograrás tu ${obj}`
+  };
+  service.post("/v1/sandbox/messaging-services/sms", sms);
   instance.post("/v1/sandbox/messaging-services/sms", { sms });
 });
 
