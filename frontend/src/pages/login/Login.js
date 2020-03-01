@@ -33,7 +33,7 @@ const Login = props => {
         <label>
           <strong>Correo:</strong>
           <input
-            name="correo"
+            name="email"
             placeholder='correo'
             type="text"
             ref={register({

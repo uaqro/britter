@@ -3,8 +3,6 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import React, { Component } from "react";
 import { MyContext } from "../contexts/context";
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-// import { GeoJsonLayer } from "deck.gl";
-import Geocoder from "react-map-gl-geocoder";
 import MY_SERVICE from "../services";
 
 const MAPBOX_TOKEN =
@@ -28,7 +26,8 @@ class MapComponent extends Component {
 		// searchResultLayer: null,
 		popupInfo: null,
 		address: '',
-		position: [-99.14556, 19.41944]
+		position: [-99.14556, 19.41944],
+		name:''
 	};
 
 	componentDidMount() {
@@ -46,13 +45,6 @@ class MapComponent extends Component {
 				position: [longitude, latitude]
 			});
 			this.props.setCoords([longitude, latitude]);
-			console.log(this.state.position[0], this.state.position[1]);
-			this.props.setRecommendations(
-				MY_SERVICE.location({
-					location: [this.state.position[0], this.state.position[0]],
-					query: this.props.activity
-				})
-			);
 			//   this.props.setAsk(false)
 		});
 	}
@@ -127,12 +119,34 @@ class MapComponent extends Component {
 							onViewportChange={this.handleViewportChange}
 							mapboxApiAccessToken={MAPBOX_TOKEN}
 						>
-							{/* <Geocoder
-              mapRef={this.mapRef}
-              onResult={this.handleOnResult}
-              mapboxApiAccessToken={MAPBOX_TOKEN}
-              onViewportChange={this.handleGeocoderViewportChange}
-            /> */}
+
+						{this.props.recommendations.map((recommendation, idx) => {
+											return (
+												<Marker
+													key={idx}
+													latitude={recommendation.lat}
+													longitude={recommendation.lng}
+													offsetLeft={-20}
+													offsetTop={-10}
+												>
+											<svg
+													style={{
+														...pinStyle,
+														transform: `translate(${-size / 2}px,${-size}px)`,
+														
+													}}
+													height={size}
+													onClick={() => {
+														this.setState({ popupInfo: recommendation.name });
+													}}
+													viewBox="0 0 24 24"
+												>
+													<path d={ICON} />
+												</svg>
+												</Marker>
+											);
+										})}
+
 							<Marker
 								latitude={this.state.position[1]}
 								longitude={this.state.position[0]}

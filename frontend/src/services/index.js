@@ -34,15 +34,8 @@ const MY_SERVICE = {
 	getUser: async () => {
 		return await serviceNode.get('/loggedin');
 	},
-	getRecommendations: async () => {
-		return await serviceNode.get('/data');
-	},
-	// recommendations: async (giro,long,lat,mts) => {
-	// 	return await serviceInegi.get(`/${giro}/${long}/${lat}/${mts}/ad9ce3af-2c72-43f6-ab2e-f3f806b602a1`, { crossdomain: true });
-	// },
-	location: async location => {
-		return await serviceFlask.post('/loc', location);
-		// return await serviceFlask.post("/get-recommendations", frm);
+	getRecommendations: async (lat, lng, query) => {
+		return await serviceNode.get(`/data/${lat}/${lng}/${query}`);
 	},
 	newGoal: async gls => {
 		return await serviceNode.post('/new-goal', gls);

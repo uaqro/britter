@@ -62,6 +62,7 @@ class MyProvider extends Component {
 		this.setState({
 			location: { longitude, latitude }
 		});
+		// MY_SERVICE.postLocation()
 	};
 
 	handleProductSubmit = (e, activity) => {
@@ -71,6 +72,20 @@ class MyProvider extends Component {
 		console.log(activity);
 		// await MY_SERVICE.uploadProduct(this.state.location);
 	};
+
+	handleLogin = (cb) => {
+    // const msg = 
+    console.log(this.state.loginForm)
+    MY_SERVICE.login(this.state.loginForm)
+      .then(({ data }) => {
+        console.log(data)
+        this.setState({ loggedUser: true, user: data.user })
+        this.setState({ commerce: data.commerce })
+        cb();
+      }).catch(error => {
+        this.setState({errors:error.response})
+        })
+  };
 
 	update = (prevState, payload) => {
 		this.setState({

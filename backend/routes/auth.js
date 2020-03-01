@@ -112,14 +112,6 @@ router.get('/loggedin', (req, res, next) => {
 		.catch(err => res.status(500).json({ err }));
 });
 
-// router.get("/data", (req, res, next) => {
-//   console.log("AHAAA!!!!")
-//   activity='sushi';
-//   location = [19.421336, -99.162700];
-//   service.get(`https://www.inegi.org.mx/app/api/denue/v1/consulta/Buscar/${activity}/${location[0]}/${location[1]}/${1000}/44522d01-cae7-455b-9b53-7fc7d481cecb`,{ withCredentials: true}).
-//   then(data => res.status(200).json({data})).
-//   catch(err => console.log(err))  
-// });
 
 function isAuth(req, res, next) {
 	req.isAuthenticated()

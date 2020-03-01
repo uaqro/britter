@@ -31,16 +31,21 @@ const Concierge = props => {
     setLocation(coords);
   }
 
-	const handleSubmit = async (e) => {
+	const handleRecomendations = async (e) => {
     e.preventDefault();
-    setCoords(location);
-    const data = await MY_SERVICE.getRecommendations(); //axios.get(`https://www.inegi.org.mx/app/api/denue/v1/consulta/Buscar/${activity}/${location[0]}/${location[1]}/${1000}/ad9ce3af-2c72-43f6-ab2e-f3f806b602a1`, {crossorigin:true}) //await MY_SERVICE.recommendations(activity,location[0],location[1],1000)
-    // MY_SERVICE.recommendations({activity,location}).then(data=> setRecommendations(data.recommendations))
-    console.log("INEGI", data)
-    console.log(location)
+		setCoords(location);
+		console.log(location);
+    const {data} = await MY_SERVICE.getRecommendations(location[1], location[0],activity); //axios.get(`https://www.inegi.org.mx/app/api/denue/v1/consulta/Buscar/${activity}/${location[0]}/${location[1]}/${1000}/ad9ce3af-2c72-43f6-ab2e-f3f806b602a1`, {crossorigin:true}) //await MY_SERVICE.recommendations(activity,location[0],location[1],1000)
+		// MY_SERVICE.recommendations({activity,location}).then(data=> setRecommendations(data.recommendations))
+		for(let i=0; i<5; i++){
+			let name = JSON.parse(data.body).response.groups[0].items[i].venue.name;
+			let {lat, lng} = JSON.parse(data.body).response.groups[0].items[i].venue.location; 
+			console.log(location)
+			let obj = {name:name, lat:lat, lng:lng}
+			setRecommendations(prev=>[...prev, obj]);
+		}
 		// context.handleProductSubmit(e, activity);
     // setAsk(!ask)
-    
 	};
 
 	return (
@@ -53,7 +58,7 @@ const Concierge = props => {
 						{/* Aquí tendríamos que poner algunos iconos de las cosas principales que actúen como inputs radiales del form */}
 						<form
 							onSubmit={e => {
-								handleSubmit(e);
+								handleRecomendations(e);
 							}}
 						>
 							<input
@@ -69,9 +74,8 @@ const Concierge = props => {
 					<MapComponent
 						{...props}
 						setAsk={setAsk}
-						activity={activity}
             setCoords={setCoords}
-						setRecommendations={setRecommendations}
+						recommendations={recommendations}
 					/>
 				</ConciergeStyles>
 			) : (

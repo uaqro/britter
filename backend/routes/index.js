@@ -109,7 +109,10 @@ router.post("/check", (req, res) => {
   }
 });
 
-router.get("/data", async (req, res) => {
+
+router.get("/data/:lat/:lng/:query",  (req, res) => {
+  const { lat, lng, query } = req.params;
+  console.log(lat,lng)
   request(
     {
       url: "https://api.foursquare.com/v2/venues/explore",
@@ -124,16 +127,17 @@ router.get("/data", async (req, res) => {
         price: 2, //Query de precio
         limit: 10
       }
-    },
-    (err, res, body) => {
+    }
+    ,
+    (err, response, body) => {
       if (err) {
         console.log(err);
       } else {
-        res.status(200).json({ body });
+        res.json({ body });
       }
     }
   );
-});
+})
 
 router.post("/congratz", (req, res) => {
   const { obj } = req.body;
