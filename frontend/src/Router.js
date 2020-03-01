@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Concierge from './pages/concierge/Concierge';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
+// import Goals from './pages/Goal/Goals';
 import UserProfile from './pages/profile/UserProfile';
 // import {ProtectedRoute} from './pages/ProtectedRoutes';
 import NotFound from './pages/404/NotFound.js';
@@ -18,6 +19,8 @@ const Router = () => (
       <Route path='*' component={NotFound}/>
     </Switch>
   </BrowserRouter>
+
+
 );
 
 export default Router;

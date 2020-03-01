@@ -15,7 +15,16 @@ class MyProvider extends Component {
 			fixedSpend: 0,
 			SavingObj: 0,
 			level: 0,
-			spendGoals: []
+			spendGoals: [
+				{
+					object: 'JumpersJacks',
+					goal: 1000,
+					dailyPay: 50,
+					currentSaving: 550,
+					status: true,
+					daysToGoal: 20
+				}
+			]
 		},
 		loginForm: {
 			email: '',
