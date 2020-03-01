@@ -37,6 +37,17 @@ export default class UserProfile extends Component {
 		}
 	};
 
+	getCompletion(status) {
+		switch (status) {
+			case 'failed':
+				return 'red';
+			case 'in progress':
+				return 'orange';
+			default:
+				return 'green';
+		}
+	}
+
 	getPercentage(current, goal) {
 		return (current / goal) * 100;
 	}
@@ -71,7 +82,8 @@ export default class UserProfile extends Component {
 									className="actual-meter"
 									style={{
 										width: `${this.getPercentage(
-											this.state.user.coins
+											this.state.user.coins,
+											this.state.user.nextLevel
 										)}%`
 									}}
 								></div>
@@ -93,8 +105,35 @@ export default class UserProfile extends Component {
 						</div>
 					</div>
 				</div>
+				<h2 className="subtitle">Retos</h2>
 				{this.state.challenges.map((item, index) => {
-					return <div className="goal-card" key={index}></div>;
+					return (
+						<div
+							className={`goal-card ${this.getCompletion(
+								item.status
+							)}`}
+							key={index}
+						>
+							<p className="title">Reto: {item.title}</p>
+							<div
+								className={`coin-mt ${this.getCompletion(
+									item.status
+								)}`}
+							>
+								<div
+									className={`actual-meter ${this.getCompletion(
+										item.status
+									)}`}
+									style={{
+										width: `${this.getPercentage(
+											item.position,
+											item.goal
+										)}%`
+									}}
+								></div>
+							</div>
+						</div>
+					);
 				})}
 			</UserProfileStyles>
 		);

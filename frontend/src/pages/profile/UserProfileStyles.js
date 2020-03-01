@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const c_black = '#0F071C';
 const c_text = '#42445e';
+const c_green = '#81c461';
+const c_red = '#f66868';
 const c_gray = '#dddfe6';
 const c_darkOrange = '#e6a71e';
 const c_orange = '#ffcb5a';
@@ -20,9 +22,9 @@ export const UserProfileStyles = styled.div`
 	}
 	.profile-card {
 		background: white;
-		border: solid 1px ${c_gray};
+		border: 1px solid ${c_gray};
 		box-shadow: 0 5px 10px 12px rgba(37, 44, 65, 0.05);
-		margin: 0 auto;
+		margin: 0 auto 30px;
 		padding: 0;
 		width: calc(100% - 60px);
 	}
@@ -133,5 +135,41 @@ export const UserProfileStyles = styled.div`
 		left: 12px;
 		top: 3px;
 		margin: 0;
+	}
+	.goal-card {
+		background: white;
+		border: 1px solid ${c_gray};
+		box-shadow: 0 5px 10px 12px rgba(37, 44, 65, 0.05);
+		margin: 0 auto 20px;
+		padding: 15px;
+		width: calc(100% - 60px);
+	}
+	.goal-card.green {
+		border: 1px solid ${c_green};
+	}
+	.goal-card.red {
+		border: 1px solid ${c_red};
+	}
+	.goal-card .title {
+		color: ${c_black};
+		font-size: 12px;
+		margin: 0 0 5px;
+		text-align: left;
+	}
+	.goal-card .coin-mt {
+		width: 100%;
+	}
+	.goal-card .coin-mt.green {
+		border: 1px solid ${c_green};
+	}
+	.goal-card .coin-mt.green .actual-meter {
+		background: ${c_green};
+	}
+	.goal-card .coin-mt.red {
+		border: 1px solid ${c_red};
+	}
+	.goal-card .coin-mt.red .actual-meter.red {
+		background: ${c_red};
+		width: 100% !important;
 	}
 `;
