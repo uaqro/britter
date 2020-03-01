@@ -19,6 +19,7 @@ const userSchema = new Schema(
 		fixedSpend: Number,
 		SavingObj: Number,
 		level: Number,
+		password: String,
 		spendGoals: [Schema.ObjectId]
 	},
 	{
