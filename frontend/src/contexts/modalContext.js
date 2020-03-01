@@ -1,8 +1,9 @@
 import React, { Component, createContext } from 'react';
 import MY_SERVICE from '../services/index.js';
+import MyContext from './context';
 export const ModalContext = createContext();
 
-class ModalProvider extends Component {
+export default class ModalProvider extends Component {
 	state = {
 		show: false,
 		object: '',
@@ -89,4 +90,4 @@ class ModalProvider extends Component {
 	}
 }
 
-export default ModalProvider;
+ModalProvider.contextType = MyContext;

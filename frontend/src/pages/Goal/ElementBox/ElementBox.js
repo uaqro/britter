@@ -6,11 +6,13 @@ import { Meter } from 'grommet';
 const ElementBox = ({ goal }) => {
 	return (
 		<ElementBoxStyles>
-			<p>{goal.object}</p>
-			<p>{goal.goal}</p>
-			<p>{goal.daysToGoal}</p>
+			<div className="right-hand">
+				<p>{goal.object}</p>
+				<p>{goal.goal}</p>
+				<p>{goal.daysToGoal}</p>
+			</div>
 			<Meter
-				type="circle"
+				type="bar"
 				max={goal.goal}
 				values={[
 					{

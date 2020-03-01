@@ -17,9 +17,9 @@ class MyProvider extends Component {
 			level: 0,
 			spendGoals: [
 				{
-					object: 'JumpersJacks',
+					object: 'Air Force1 2007',
 					goal: 1000,
-					dailyPay: 50,
+					dayliPay: 50,
 					currentSaving: 550,
 					status: true,
 					daysToGoal: 20
@@ -37,7 +37,7 @@ class MyProvider extends Component {
 		},
 		// location: { longitude: 0, latitude: 0 },
 		loggedUser: {},
-		giro:''
+		giro: ''
 	};
 
 	componentDidMount() {
@@ -56,18 +56,18 @@ class MyProvider extends Component {
 	isLogged = async () => {
 		const user = await MY_SERVICE.isLogged();
 		this.setState({ user });
-	}
+	};
 
 	handleLocation = (longitude, latitude) => {
 		this.setState({
 			location: { longitude, latitude }
 		});
-	}
+	};
 
 	handleProductSubmit = (e, activity) => {
 		this.setState({
-			giro:activity
-		})
+			giro: activity
+		});
 		console.log(activity);
 		// await MY_SERVICE.uploadProduct(this.state.location);
 	};
