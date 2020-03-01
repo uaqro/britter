@@ -16,6 +16,7 @@ router.post("/new-goal", async (req, res) => {
   }).populate("spendGoals");
   res.status(201).json({ usr });
 });
+<<<<<<< HEAD
 
 router.post("/update-goal", async (req, res) => {
   const { goal, sav } = req.body;
@@ -51,5 +52,31 @@ router.post("/congratz", (req, res) => {
   service.post("/v1/sandbox/messaging-services/sms", sms);
   res.status(201).json({ msg: "Sent!" });
 });
+=======
+router.post("/new-goal", async (req, res)=> {
+  const {goal, object} = req.body
+  const usr = await User.findById(req.user._id)
+  usr.spendGoals.push({
+    object,
+    goal,
+    currentSavings:0
+  })
+  usr.save()
+  res.status(201).json({usr})
+})
+
+router.post("/update-goal", async (req, res) => {
+  const {idx, sav} = req.body
+  const usr = await User.findById(req.user._id)
+  usr.spendGoals[idx].currentSavings = usr.spendGoals[idx].currentSavings+sav
+  if (usr.spendGoals[idx].currentSavings === usr.spendGoals[idx].goal){
+    const sms = {mobilePhoneNumber:usr.mobilePhoneNumber, message:`Felicidades ${usr.name}! Has logrado tu objetivo. Aquí tienes un 10% de descuento para comprar tu nuev@ ${usr.spendGoals[idx].object}`}
+    service.post("/v1/sandbox/messaging-services/sms", sms)
+    usr.spendGoals[idx].status = true
+  }
+  usr.save()
+  res.status(201).json({usr})
+})
+>>>>>>> 08b85ce6536f8e1c0e41fcd7c576736dcb0c5c93
 
 module.exports = router;

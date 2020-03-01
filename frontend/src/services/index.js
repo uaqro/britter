@@ -30,6 +30,10 @@ const MY_SERVICE = {
   congratz: async () => {
     return await serviceNode.post("/congratz");
   },
+  getUser: async () => {
+    return await service.get('/loggedin');
+  }
+  ,
   recommendations: async frm => {
     return await serviceFlask.post("/get-recommendations", frm);
   },
