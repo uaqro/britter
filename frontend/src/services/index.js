@@ -22,6 +22,9 @@ const MY_SERVICE = {
   },
   recommendations: async frm => {
     return await service.post("/get-recommendations", frm);
+  },
+  location: async location => {
+    return await service.post("/loc",location)
   }
 };
 
