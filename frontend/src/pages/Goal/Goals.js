@@ -1,33 +1,38 @@
-import React, { useContext } from "react";
-import GoalModal from "./GoalModal";
-import { MyContext } from "../../contexts/context";
-import { ModalContext } from "../../contexts/modalContext";
-import ElementBox from "./ElementBox/ElementBox";
-import { GoalsLayout } from "./GoalStyles";
+import React, { useContext } from 'react';
+import GoalModal from './GoalModal';
+import { MyContext } from '../../contexts/context';
+import { ModalContext } from '../../contexts/modalContext';
+import ElementBox from './ElementBox/ElementBox';
+import { GoalsLayout, GoalsBox, ModalButton } from './GoalStyles';
 
 const Goals = props => {
-  return (
-    <GoalsLayout>
-      <MyContext.Consumer>
-        {context => (
-          <ModalContext.Consumer>
-            {modalctx => (
-              <>
-                {context.user.spendGoals.map(element => (
-                  <ElementBox goal={element} />
-                ))}
-                {context.user.spendGoals.length < 3 ? (
-                  <button onClick={modalctx.setShow}>Añadir goal</button>
-                ) : (
-                  <></>
-                )}
-                <GoalModal />
-              </>
-            )}
-          </ModalContext.Consumer>
-        )}
-      </MyContext.Consumer>
-    </GoalsLayout>
-  );
+	return (
+		<GoalsLayout>
+			<MyContext.Consumer>
+				{context => (
+					<ModalContext.Consumer>
+						{modalctx => (
+							<GoalsBox>
+								<div className="titulo">
+									<p>Tus metas</p>
+								</div>
+								{context.user.spendGoals.map(element => (
+									<ElementBox goal={element} />
+								))}
+								{context.user.spendGoals.length < 3 ? (
+									<ModalButton onClick={modalctx.setShow}>
+										Añadir Objetivo
+									</ModalButton>
+								) : (
+									<></>
+								)}
+								<GoalModal />
+							</GoalsBox>
+						)}
+					</ModalContext.Consumer>
+				)}
+			</MyContext.Consumer>
+		</GoalsLayout>
+	);
 };
 export default Goals;
