@@ -1,37 +1,94 @@
 {
-  "name": "frontend",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.19.0",
-    "mapbox-gl": "^1.8.1",
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
-    "react-map-gl": "^5.2.3",
-    "react-map-gl-geocoder": "^2.0.11",
-    "react-router-dom": "^5.1.1",
-    "react-scripts": "^3.4.0",
-    "styled-components": "^5.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "frontend",
+	"version": "0.0.0",
+	"private": true,
+	"dependencies": {
+		"axios": "^0.19.0",
+		"mapbox-gl": "^1.8.1",
+		"react": "^16.10.0",
+		"react-dom": "^16.10.0",
+		"react-map-gl": "^5.2.3",
+		"react-map-gl-geocoder": "^2.0.11",
+		"react-router-dom": "^5.1.1",
+		"react-scripts": "^3.4.0",
+		"styled-components": "^5.0.1"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"parserOptions": {
+			"ecmaVersion": 2018,
+			"sourceType": "module",
+			"allowImportExportEverywhere": true
+		},
+		"extends": [
+			"react-app",
+			"eslint:recommended",
+			"prettier",
+			"plugin:react/recommended"
+		],
+		"env": {
+			"browser": true,
+			"es6": true,
+			"jest": true,
+			"worker": true,
+			"amd": true
+		},
+		"rules": {
+			"no-console": "off",
+			"no-unused-vars": "warn",
+			"no-undef": "warn",
+			"no-useless-escape": "warn",
+			"no-prototype-builtins": "warn",
+			"no-fallthrough": "warn",
+			"no-func-assign": "warn",
+			"no-empty": "warn",
+			"no-self-assign": "warn",
+			"no-cond-assign": "warn",
+			"no-constant-condition": "warn",
+			"no-unsafe-finally": "warn"
+		}
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"prettier": {
+		"tabWidth": 4,
+		"useTabs": true,
+		"semi": true,
+		"singleQuote": true
+	},
+	"devDependencies": {
+		"@prettier/plugin-pug": "^1.1.9",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.10.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"husky": "^4.2.3",
+		"lint-staged": "^10.0.8",
+		"prettier": "^1.19.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.js": [
+			"eslint --fix",
+			"git add"
+		]
+	}
 }
