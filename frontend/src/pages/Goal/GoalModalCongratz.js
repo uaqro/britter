@@ -8,7 +8,7 @@ const GoalModalCongratz = () => {
 	return (
 		<div>
 			<p>Felicidades!</p>
-			<ElementBox element={modalctx.goal} />
+			<ElementBox goal={modalctx.submitedGoal} />
 			<Button onClick={() => modalctx.setShow()}>Al turrón!</Button>
 		</div>
 	);

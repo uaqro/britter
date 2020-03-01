@@ -28,10 +28,7 @@ const GoalModalObj = () => {
 				</button>
 				<button
 					className="good"
-					onClick={() => {
-						modalctx.stateHandler('step', 1);
-						modalctx.checkBudget(object);
-					}}
+					onClick={() => modalctx.checkBudget(object)}
 				>
 					Next Step
 				</button>

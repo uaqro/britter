@@ -44,13 +44,16 @@ const MY_SERVICE = {
 		return await serviceNode.post('/new-goal', gls);
 	},
 	checkGoalObject: async obj => {
-		return await serviceFlask.post('/check', { object: obj });
+		return await serviceNode.post('/check', { obj });
 	},
 	updateGoal: async (gl, sv) => {
-		return await serviceNode.post('/update-goal', { goal: gl, sav: sv });
+		const goal = { gl, sv };
+		console.log('aquí bn');
+		return await serviceNode.post('/update-goal', { goal });
 	},
 	getGoalStats: async gls => {
-		return await serviceNode.post('/calc-goal', { budget: gls });
+		console.log('aquí bn');
+		return await serviceNode.post('/calc-goal', { gls });
 	}
 };
 

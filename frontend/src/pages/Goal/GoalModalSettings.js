@@ -4,7 +4,7 @@ import { RangeInput, Button } from 'grommet';
 
 const GoalModalSettings = () => {
 	const modalctx = useContext(ModalContext);
-	const maxPrice = 40000;
+	const maxPrice = modalctx.price * 1.5;
 	return (
 		<>
 			<p>{`Te recomendamos gastar ${modalctx.price}$MXN en tu ${modalctx.object}`}</p>
@@ -21,13 +21,7 @@ const GoalModalSettings = () => {
 			<p>{modalctx.budget}</p>
 			<div className="buttons">
 				<Button onClick={() => modalctx.setShow()}>Cerrar</Button>
-				<Button
-					onClick={evt => {
-						modalctx.stateHandler('step', 2);
-					}}
-				>
-					Continuar
-				</Button>
+				<Button onClick={() => modalctx.checkGoal()}>Continuar</Button>
 			</div>
 		</>
 	);

@@ -12,22 +12,25 @@ class ModalProvider extends Component {
 		dayliPay: 0,
 		daysToGoal: 0,
 		credit: false,
-		goal: {}
+		goal: 0,
+		submitedGoal: {}
 	};
 
 	setShow = () => {
 		this.setState({ show: !this.state.show });
 	};
 
-	submitGoal = async () => {
+	submitGoal = () => {
 		const goal = {
-			name: this.state.object,
-			goal: this.state.dayliPay * this.state.daysToPay,
+			object: this.state.object,
+			goal: this.state.goal,
 			dailyPay: this.state.dayliPay,
+			currentSaving: 0,
+			status: true,
 			daysToGoal: this.state.daysToGoal
 		};
-		this.setState({ goal });
-		await MY_SERVICE.newGoal(goal);
+		this.setState({ submitedGoal: goal });
+		MY_SERVICE.newGoal(goal);
 		MY_SERVICE.isLogged();
 		MY_SERVICE.congratz();
 		this.setState({ step: 3 });
@@ -36,15 +39,22 @@ class ModalProvider extends Component {
 	checkBudget = async val => {
 		this.setState({ object: val });
 		const recommendation = await MY_SERVICE.checkGoalObject(val);
-		this.setState({ price: recommendation.price });
+		this.setState({
+			price: recommendation.data.price,
+			step: 1,
+			budget: recommendation.data.price
+		});
 	};
 
-	checkGoal = async budget => {
-		const goalz = await MY_SERVICE.getGoalStats(budget);
+	checkGoal = async () => {
+		const goalz = await MY_SERVICE.getGoalStats(this.state.budget);
+		console.log(goalz);
 		this.setState({
-			credit: goalz.credit,
-			daysToGoal: goalz.daysToGoal,
-			dayliPay: goalz.dayliPay
+			credit: goalz.data.goal.credit,
+			daysToGoal: Math.round(goalz.data.goal.daysToGoal),
+			dayliPay: Math.round(goalz.data.goal.dayliPay),
+			goal: goalz.data.goal.goal,
+			step: 2
 		});
 	};
 
@@ -62,14 +72,16 @@ class ModalProvider extends Component {
 					step: this.state.step,
 					price: this.state.price,
 					dayliPay: this.state.dayliPay,
-					daysToPay: this.state.daysToPay,
+					daysToGoal: this.state.daysToGoal,
 					credit: this.state.credit,
 					checkBudget: this.checkBudget,
 					setGoal: this.setGoal,
 					setShow: this.setShow,
 					stateHandler: this.stateHandler,
 					goal: this.state.goal,
-					submitGoal: this.submitGoal
+					submitGoal: this.submitGoal,
+					checkGoal: this.checkGoal,
+					submitedGoal: this.state.submitedGoal
 				}}
 			>
 				{this.props.children}

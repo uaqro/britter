@@ -9,24 +9,26 @@ const GoalModalSettings = () => {
 			{modalctx.credit ? (
 				<>
 					<p>¡Sueñas en grande!</p>
-					<p>{`Ahorra ${modalctx.dailyPay} durante ${modalctx.daysToGoal} días para comprar tu ${modalctx.object}.`}</p>
+					<p>{`Ahorra ${modalctx.dayliPay}$ durante ${modalctx.daysToGoal} días para comprar tu ${modalctx.object}.`}</p>
 					<p>Cumple tus pagos diarios y obtendrás un crédito mejor</p>
+					<div className="buttons">
+						<Button onClick={() => modalctx.setShow()}>
+							¿Te rajas?
+						</Button>
+						<Button onClick={() => modalctx.submitGoal()}>
+							Lo quiero!
+						</Button>
+					</div>
 				</>
 			) : (
 				<>
-					<p>{`Ahorra ${modalctx.dailyPay} durante ${modalctx.daysToGoal} días para comprar tu ${modalctx.object}.`}</p>
+					<p>{`Ahorra ${modalctx.dayliPay} durante ${modalctx.daysToGoal} días para comprar tu ${modalctx.object}.`}</p>
 					<div className="buttons">
-						<Button
-							onClick={() => modalctx.setShow()}
-							color={{ border: 'accent-1' }}
-						>
+						<Button onClick={() => modalctx.setShow()}>
 							¿Te rajas?
 						</Button>
-						<Button
-							onClick={() => modalctx.submitGoal()}
-							color={{ border: 'status-critical' }}
-						>
-							Quiero conseguirlo!
+						<Button onClick={() => modalctx.submitGoal()}>
+							Lo quiero!
 						</Button>
 					</div>
 				</>
