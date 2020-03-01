@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // import Home from './pages/home/Home';
 import Concierge from './pages/concierge/Concierge';
-// import UserProfile from './pages/profile/UserProfile';
+import UserProfile from './pages/profile/UserProfile';
 // import NotFound from './components/404/NotFound.js';
 
 const Router = () => (
@@ -10,7 +10,7 @@ const Router = () => (
 		<Switch>
 			{/* <Route exact path="/" component={Home} /> */}
 			<Route exact path="/con" component={Concierge} />
-			{/* <Route exact path="/profile" component={UserProfile} /> */}
+			<Route exact path="/profile" component={UserProfile} />
 			{/* <Route component={NotFound} /> */}
 		</Switch>
 	</BrowserRouter>

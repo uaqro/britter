@@ -50,7 +50,8 @@
 			"no-self-assign": "warn",
 			"no-cond-assign": "warn",
 			"no-constant-condition": "warn",
-			"no-unsafe-finally": "warn"
+			"no-unsafe-finally": "warn",
+			"no-irregular-whitespace": "warn"
 		}
 	},
 	"browserslist": {
