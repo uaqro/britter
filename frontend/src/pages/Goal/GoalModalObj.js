@@ -1,36 +1,38 @@
 import React, { useState, useContext } from 'react';
 import { ModalContext } from '../../contexts/modalContext';
+import { Select, Button } from 'grommet';
 
 const GoalModalObj = () => {
 	const modalctx = useContext(ModalContext);
 	const [object, setObject] = useState('');
+
 	return (
 		<>
 			<p>¿Qué te quieres comprar?</p>
-			<input
-				type="text"
-				name="object"
-				list="prods"
-				onChange={evt => setObject(evt.target.value)}
+			<Select
+				multiple={false}
+				onChange={evt => setObject(evt.value)}
+				options={[
+					'Moto',
+					'Coche',
+					'Viaje',
+					'Computadora',
+					'Consumo',
+					'Tenis'
+				]}
 			/>
-			<datalist id="prods">
-				<option value="Moto" />
-				<option value="Coche" />
-				<option value="Viaje" />
-				<option value="Computadora" />
-				<option value="Consumo" />
-			</datalist>
+
 			<div className="buttons">
+				<button className="bad" onClick={() => modalctx.setShow()}>
+					Close
+				</button>
 				<button
-					onClick={() => {
-						modalctx.stateHandler('step', 1);
-						modalctx.checkBudget(object);
-					}}
+					className="good"
+					onClick={() => modalctx.checkBudget(object)}
 				>
 					Next Step
 				</button>
 			</div>
-			<button onClick={() => modalctx.setShow()}>Close</button>
 		</>
 	);
 };

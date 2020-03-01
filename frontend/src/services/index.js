@@ -31,9 +31,6 @@ const MY_SERVICE = {
 	isLogged: async () => {
 		return await serviceNode.get('/loggedin');
 	},
-	congratz: async () => {
-		return await serviceNode.post('/congratz');
-	},
 	getUser: async () => {
 		return await serviceNode.get('/loggedin');
 	},
@@ -51,10 +48,14 @@ const MY_SERVICE = {
 		return await serviceNode.post('/new-goal', gls);
 	},
 	checkGoalObject: async obj => {
-		return await serviceFlask.post('/check', obj);
+		return await serviceNode.post('/check', { obj });
 	},
 	updateGoal: async (gl, sv) => {
-		return await serviceNode.post('/update-goal', { goal: gl, sav: sv });
+		const goal = { gl, sv };
+		return await serviceNode.post('/update-goal', { goal });
+	},
+	getGoalStats: async gls => {
+		return await serviceNode.post('/calc-goal', { gls });
 	}
 };
 
