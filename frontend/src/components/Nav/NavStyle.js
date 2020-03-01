@@ -1,10 +1,11 @@
+
 import styled from 'styled-components';
 
-export const LogoStyles = styled.div`
-  /* padding:100px 0 0 0; */
+export const NavStyles = styled.div`
     position: absolute;
     left: 50%;
-    top: 40px;
+    bottom: 80px;
     transform: translate(-50%, 0);
-    z-index: 10;
+    z-index:20;
 `;
+

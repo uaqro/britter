@@ -45,6 +45,7 @@ class MapComponent extends Component {
 				},
 				position: [longitude, latitude]
 			});
+			this.props.setCoords([longitude, latitude]);
 			console.log(this.state.position[0], this.state.position[1]);
 			this.props.setRecommendations(
 				MY_SERVICE.location({
