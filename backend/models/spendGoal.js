@@ -6,7 +6,8 @@ const spendGoal = new Schema(
     goal: Number,
     currentSaving: { type: Number, default: 0 },
     status: { type: Boolean, default: true },
-    daysToGoal: { type: Number, default: 1 }
+    daysToGoal: { type: Number, default: 1 },
+    dailySaving: Number
   },
   {
     timestamps: true,

@@ -29,6 +29,9 @@ const MY_SERVICE = {
   },
   checkGoalObject: async obj =>{
     return await serviceFlask.post("/check", obj)
+  },
+  updateGoal: async (gl,sv) =>{
+    return await serviceNode.post("/update-goal", {goal:gl, sav:sv})
   }
 };
 

@@ -8,7 +8,7 @@ const GoalModalObj = ({
   checkBudget,
   handleClose
 }) => {
-  const [goal, setGoal] = useState({ daysToGoal: 0, object: "", goal: 0 });
+  const [goal, setGoal] = useState({ daysToGoal: 0, object: "" });
 
   const handleInputs = evt =>
     setGoal({ ...goal, [evt.target.name]: evt.target.value });
@@ -29,10 +29,16 @@ const GoalModalObj = ({
         <option value="Computadora" />
         <option value="Consumo" />
       </datalist>
+      <p>¿En cuántos días lo quieres comprar?</p>
+      <input
+        type="number"
+        name="daysToGoal"
+        onChange={evt => handleInputs(evt)}
+      />
       <button
         onClick={() => {
           stepping(false);
-          checkBudget(goal.object);
+          checkBudget(goal);
         }}
       >
         Next Step

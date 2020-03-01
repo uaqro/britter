@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import GoalModalObj from "./GoalModalObj";
 import GoalModalSettings from "./GoalModalSettings";
 
-const GoalModal = ({ show, handleClose }) => {
+const GoalModal = ({ show, handle }) => {
   const handleShow = show ? "modal display-block" : "modal display-none";
 
   const [goal, setGoal] = useState({ daysToGoal: 0, object: "", goal: 0 });
