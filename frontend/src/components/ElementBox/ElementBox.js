@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import { ElementBoxStyles } from "./ElementBoxStyles";
 
 const ElementBox = ({ element }) => {
   return (
-    <Element>
+    <ElementBoxStyles>
       <p>{element.name}</p>
       <p>{element.name}</p>
       <p>{element.name}</p>
-    </Element>
+    </ElementBoxStyles>
   );
 };
 
