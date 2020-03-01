@@ -6,9 +6,10 @@ import Signup from './pages/signup/Signup';
 import UserProfile from './pages/profile/UserProfile';
 // import {ProtectedRoute} from './pages/ProtectedRoutes';
 import NotFound from './pages/404/NotFound.js';
-
+import Logo from './components/Logo/Logo';
 const Router = () => (
   <BrowserRouter>
+    <Logo/>
     <Switch>
       <Route exact path='/' component={Concierge} />
       <Route exact path="/signup" component={Signup}/>
