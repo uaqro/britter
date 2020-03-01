@@ -47,6 +47,12 @@ router.post("/login", passport.authenticate("local"), (req, res, next) => {
   res.status(200).json({ user });
 });
 
+router.get('loggedin', (req, res)=>{
+  User.findById(req.user._id)
+  .then((user) => res.status(200).json({ user }))
+  .catch((err) => res.status(500).json({ err }));
+})
+
 router.get("/logout", (req, res, next) => {
   req.logout();
   res.status(200).json({ msg: "Logged out" });
