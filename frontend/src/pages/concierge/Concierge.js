@@ -5,7 +5,8 @@ import MapComponent from '../../components/Map';
 import MyContext from '../../contexts/context';
 import RecommendationBox from './RecommendationBox/RecommendationBox';
 import MapGo from '../../assets/map-go.svg';
-import Britter from '../../assets/britter-logo.svg';
+import axios from 'axios';
+// import Britter from '../../assets/britter-logo.svg';
 const Concierge = props => {
 	const context = useContext(MyContext);
 	const [val, setVal] = useState(0);
@@ -13,22 +14,33 @@ const Concierge = props => {
 	const [ask, setAsk] = useState(true);
 	const [recommendations, setRecommendations] = useState([]);
 	const [location, setLocation] = useState([]);
+	// useEffect(() => {
+	// 	//Send the position
+	// 	const fetchData = async () => {
+  //     console.log("context",context)
+  //     // MY_SERVICE.recommendations()
+	// 		//   MY_SERVICE.getTodaysBudget().then(data=> setVal(data.budget))
+	// 		// MY_SERVICE.location(context.state.location);
+	// 		// setData(result.data);
+	// 	};
 
-	useEffect(() => {
-		//Send the position
-		const fetchData = async () => {
-			//   MY_SERVICE.getTodaysBudget().then(data=> setVal(data.budget))
-			// MY_SERVICE.location(context.state.location);
-			// setData(result.data);
-		};
+	// 	fetchData();
+  // }, [context]);
+  
+  const setCoords = (coords) => {
+    setLocation(coords);
+  }
 
-		fetchData();
-	}, [context]);
-
-	const handleSubmit = () => {
-		// MY_SERVICE.recommendations({activity,location}).then(data=> setRecommendations(data.recommendations))
-		context.handleProductSubmit();
-		// setAsk(!ask)
+	const handleSubmit = async (e) => {
+    e.preventDefault();
+    setCoords(location);
+    const data = await MY_SERVICE.getRecommendations(); //axios.get(`https://www.inegi.org.mx/app/api/denue/v1/consulta/Buscar/${activity}/${location[0]}/${location[1]}/${1000}/ad9ce3af-2c72-43f6-ab2e-f3f806b602a1`, {crossorigin:true}) //await MY_SERVICE.recommendations(activity,location[0],location[1],1000)
+    // MY_SERVICE.recommendations({activity,location}).then(data=> setRecommendations(data.recommendations))
+    console.log("INEGI", data)
+    console.log(location)
+		// context.handleProductSubmit(e, activity);
+    // setAsk(!ask)
+    
 	};
 
 	return (
@@ -58,6 +70,7 @@ const Concierge = props => {
 						{...props}
 						setAsk={setAsk}
 						activity={activity}
+            setCoords={setCoords}
 						setRecommendations={setRecommendations}
 					/>
 				</ConciergeStyles>
