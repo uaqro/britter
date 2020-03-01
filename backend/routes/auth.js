@@ -19,6 +19,25 @@ instance.defaults.headers.common['x-Client'] =
 instance.defaults.headers.common['x-Password'] =
 	'4d0313fcB8f54387bbfa67Da4E8eb7Ea';
 
+router.get('/get-user', (req, res) => {
+	instance
+		.get('/v1/sandbox/checking-accounts/profile', {
+			params: {
+				accountNumber: 4077641025
+			}
+		})
+		.then(response => {
+			return response;
+		})
+		.then(json => {
+			const data = json.data.accountProfile;
+			res.status(200).json(data);
+		})
+		.catch(err => {
+			console.log(err);
+		});
+});
+
 router.post('/signup', (req, res) => {
 	const { email, password, accountNumber } = req.body;
 	console.log(email);
@@ -83,12 +102,11 @@ router.get('/profile', isAuth, (req, res, next) => {
 		.catch(err => res.status(500).json({ err }));
 });
 
-router.get('/loggedin', (req, res, next) => {
-	User.findById(req.user._id)
-		.then(user => res.status(200).json({ user }))
-		.catch(err => res.status(500).json({ err }));
-});
-
+// router.get('/loggedin', (req, res, next) => {
+// 	User.findById(req.user._id)
+// 		.then(user => res.status(200).json({ user }))
+// 		.catch(err => res.status(500).json({ err }));
+// });
 
 function isAuth(req, res, next) {
 	req.isAuthenticated()
