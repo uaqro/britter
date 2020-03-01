@@ -61,38 +61,15 @@ router.post('/signup', (req, res) => {
 		});
 });
 
-// router.post('/signup', async (req, res, next) => {
-// 	const hsbcAccount = await service.get(
-// 		'/v1/sandbox/checking-accounts/profile',
-// 		{
-// 			params: {
-// 				query: req.body.cc
-// 			},
-// 			header
-// 		}
-// 	);
-// 	const hsbcUserData = await service.get(
-// 		`/v1/sandbox/clients/${hsbcAccount.accountProfile.firstHolder.clientNumber}/profile`,
-// 		{
-// 			header
-// 		}
-// 	);
-// 	const newUser = {
-// 		cc: req.body.cc,
-// 		name: hsbcUserData.clientProfile.name,
-// 		balance: hsbcAccount.accountProfile.balance,
-// 		clientNumber: hsbcAccount.accountProfile.firstHolder.clientNumber,
-// 		mobilePhoneNumber: hsbcUserData.clientProfile.homePhone
-// 	};
-
-// 	User.register(newUser, req.body.password)
-// 		.then(user => res.status(201).json({ user }))
-// 		.catch(err => res.status(500).json({ err }));
-// });
-
-router.post('/login', passport.authenticate('local'), (req, res, next) => {
-	const { user } = req;
-	res.status(200).json({ user });
+router.post('/login', (req, res) => {
+	const { email, password } = req.body;
+	User.findOne({ email })
+		.then(user => {
+			res.status(200).json({ user });
+		})
+		.catch(err => {
+			console.log(err);
+		});
 });
 
 router.get('/logout', (req, res, next) => {
