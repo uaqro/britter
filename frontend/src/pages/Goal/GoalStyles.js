@@ -7,12 +7,13 @@ export const GoalsLayout = styled.div`
 	justify-content: center;
 	margin: 0;
 	padding: 60px 0;
+	box-sizing: border-box;
 `;
 export const GoalsBox = styled.div`
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	width: 90%;
+	width: 100%;
 	.titulo {
 		display: flex;
 		align-items: center;
