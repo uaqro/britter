@@ -5,19 +5,15 @@ const User = require('../models/User');
 const passport = require('../config/passport');
 const axios = require('axios');
 const CircularJSON = require('circular-json');
-const baseHSBC = 'https://mwiuw3q1fj.execute-api.us-east-1.amazonaws.com/dev';
+const baseHSBC = process.env.BASE_HSBC;
 
 const instance = axios.create();
 
-instance.defaults.baseURL =
-	'https://mwiuw3q1fj.execute-api.us-east-1.amazonaws.com/dev/';
-instance.defaults.headers.common['x-api-key'] =
-	'UFN0vZMOV18e1xzmRQGrn5yqGpjLmTuj39FlvQDG';
-instance.defaults.headers.common['x-User'] = 'TEAM1';
-instance.defaults.headers.common['x-Client'] =
-	'0425c644a72d4ec7bdf15c5d29b705b6';
-instance.defaults.headers.common['x-Password'] =
-	'4d0313fcB8f54387bbfa67Da4E8eb7Ea';
+instance.defaults.baseURL = process.env.BASE_URL;
+instance.defaults.headers.common['x-api-key'] = process.env.HSBC_API;
+instance.defaults.headers.common['x-User'] = process.env.HSBC_USER;
+instance.defaults.headers.common['x-Client'] = process.env.HSBC_CLIENT;
+instance.defaults.headers.common['x-Password'] = process.env.HSBC_PASSWORD;
 
 router.get('/get-user', (req, res) => {
 	instance
