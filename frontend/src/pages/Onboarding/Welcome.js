@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MY_SERVICE from "../services/index";
+import MY_SERVICE from "../../services/index";
 import styled from "styled-components";
 
 const Presentation = styled.div``;

@@ -6,7 +6,10 @@ process.env.NODE_ENV === "production"
   : (baseURL = "http://localhost:3000");
 
 const serviceNode = axios.create({ withCredentials: true, baseURL });
-const serviceFlask = axios.create({withCredentials:true, "FLASK ENDPOINT"})
+const serviceFlask = axios.create({
+  withCredentials: true,
+  baseURL: "FLASK ENDPOINT"
+});
 
 const MY_SERVICE = {
   test: async () => {
@@ -22,20 +25,20 @@ const MY_SERVICE = {
     return await serviceNode.get("/logout");
   },
   recommendations: async frm => {
-    return await service.post("/get-recommendations", frm);
-  },
-  location: async location => {
-    return await service.post("/loc",location)
     return await serviceFlask.post("/get-recommendations", frm);
   },
-  newGoal: async gls =>{
-    return await serviceNode.post("/new-goal", gls)
+  location: async location => {
+    return await serviceFlask.post("/loc", location);
+    // return await serviceFlask.post("/get-recommendations", frm);
   },
-  checkGoalObject: async obj =>{
-    return await serviceFlask.post("/check", obj)
+  newGoal: async gls => {
+    return await serviceNode.post("/new-goal", gls);
   },
-  updateGoal: async (gl,sv) =>{
-    return await serviceNode.post("/update-goal", {goal:gl, sav:sv})
+  checkGoalObject: async obj => {
+    return await serviceFlask.post("/check", obj);
+  },
+  updateGoal: async (gl, sv) => {
+    return await serviceNode.post("/update-goal", { goal: gl, sav: sv });
   }
 };
 
