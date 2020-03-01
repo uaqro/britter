@@ -35,8 +35,9 @@ class MyProvider extends Component {
 			password: '',
 			cc: ''
 		},
-		location: { longitude: 0, latitude: 0 },
-		loggedUser: {}
+		// location: { longitude: 0, latitude: 0 },
+		loggedUser: {},
+		giro:''
 	};
 
 	componentDidMount() {
@@ -50,23 +51,25 @@ class MyProvider extends Component {
 		}
 	}
 
-	componentDidMount() {}
+	// componentDidMount() {}
 
-	async isLogged() {
+	isLogged = async () => {
 		const user = await MY_SERVICE.isLogged();
 		this.setState({ user });
 	}
 
-	handleLocation(longitude, latitude) {
+	handleLocation = (longitude, latitude) => {
 		this.setState({
 			location: { longitude, latitude }
 		});
 	}
 
-	handleProductSubmit = async e => {
-		e.preventDefault();
-		console.log(this.state.location);
-		await MY_SERVICE.uploadProduct(this.state.location);
+	handleProductSubmit = (e, activity) => {
+		this.setState({
+			giro:activity
+		})
+		console.log(activity);
+		// await MY_SERVICE.uploadProduct(this.state.location);
 	};
 
 	update = (prevState, payload) => {

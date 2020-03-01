@@ -5,6 +5,10 @@ process.env.NODE_ENV === 'production'
 	? (baseURL = 'here should be your production endpoint')
 	: (baseURL = 'http://localhost:3000');
 
+let config = {
+	headers: {'Access-Control-Allow-Origin': '*'}
+};
+
 const serviceNode = axios.create({ withCredentials: true, baseURL });
 const serviceFlask = axios.create({
 	withCredentials: true,
@@ -33,9 +37,12 @@ const MY_SERVICE = {
 	getUser: async () => {
 		return await serviceNode.get('/loggedin');
 	},
-	recommendations: async frm => {
-		return await serviceFlask.post('/get-recommendations', frm);
+	getRecommendations: async () => {
+		return await serviceNode.get('/data');
 	},
+	// recommendations: async (giro,long,lat,mts) => {
+	// 	return await serviceInegi.get(`/${giro}/${long}/${lat}/${mts}/ad9ce3af-2c72-43f6-ab2e-f3f806b602a1`, { crossdomain: true });
+	// },
 	location: async location => {
 		return await serviceFlask.post('/loc', location);
 		// return await serviceFlask.post("/get-recommendations", frm);

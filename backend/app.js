@@ -47,8 +47,10 @@ app.use(logger('dev'));
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const concierge = require('./routes/concierge');
 app.use('/', index);
 app.use('/', auth);
+app.use('/', concierge);
 
 // Uncomment this line for production
 // app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
