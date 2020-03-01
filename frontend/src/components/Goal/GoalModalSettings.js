@@ -1,7 +1,7 @@
 import MY_SERVICE from "../services";
 import React, { useState } from "react";
 
-const GoalModelSettings = ({ credit, price, handleInputs, handleClose }) => {
+const GoalModalSettings = ({ credit, price, handleInputs, handleClose }) => {
   return (
     <div className={handleShow}>
       <form onSubmit={() => MY_SERVICE.newGoal(goal)}>
@@ -21,3 +21,5 @@ const GoalModelSettings = ({ credit, price, handleInputs, handleClose }) => {
     </div>
   );
 };
+
+export default GoalModalSettings;

@@ -29,12 +29,6 @@ const GoalModalObj = ({
         <option value="Computadora" />
         <option value="Consumo" />
       </datalist>
-      <p>¿En cuántos días lo quieres comprar?</p>
-      <input
-        type="number"
-        name="daysToGoal"
-        onChange={evt => handleInputs(evt)}
-      />
       <button
         onClick={() => {
           stepping(false);
