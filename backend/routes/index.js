@@ -1,9 +1,11 @@
+require("dotenv").config();
 const router = require("express").Router();
 const User = require("../models/User");
 const axios = require("axios");
 const spendGoal = require("../models/spendGoal");
 const baseHSBC = "https://mwiuw3q1fj.execute-api.us-east-1.amazonaws.com/dev";
 const instance = axios.create();
+const request = require("request");
 
 instance.defaults.baseURL =
   "https://mwiuw3q1fj.execute-api.us-east-1.amazonaws.com/dev/";
@@ -105,6 +107,32 @@ router.post("/check", (req, res) => {
     default:
       res.status(201).json({ price: 2500 });
   }
+});
+
+router.get("/data", async (req, res) => {
+  request(
+    {
+      url: "https://api.foursquare.com/v2/venues/explore",
+      method: "GET",
+      qs: {
+        client_id: process.env.CLIENT_4SQ,
+        client_secret: process.env.SECRET_4SQ,
+        ll: "19.421336,-99.162700",
+        query: "sushi", //query de producto
+        v: "20180323",
+        radius: 500,
+        price: 2, //Query de precio
+        limit: 10
+      }
+    },
+    (err, res, body) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json({ body });
+      }
+    }
+  );
 });
 
 router.post("/congratz", (req, res) => {
