@@ -25,14 +25,14 @@ const Goals = props => {
 										/>
 									)
 								)}
-								{context.user.spendGoals.length < 3 ? (
+								{/* {context.user.spendGoals.length < 3 ? (
 									<ModalButton onClick={modalctx.setShow}>
 										Añadir Objetivo
 									</ModalButton>
 								) : (
 									<></>
-								)}
-								<GoalModal />
+								)} */}
+								{/* <GoalModal /> */}
 							</GoalsBox>
 						)}
 					</ModalContext.Consumer>

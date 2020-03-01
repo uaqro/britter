@@ -9,7 +9,7 @@ const c_darkOrange = '#e6a71e';
 const c_orange = '#ffcb5a';
 
 export const UserProfileStyles = styled.div`
-	padding:100px 0 0 0;
+	padding: 100px 0 0 0;
 
 	* {
 		box-sizing: border-box;
@@ -173,5 +173,33 @@ export const UserProfileStyles = styled.div`
 	.goal-card .coin-mt.red .actual-meter.red {
 		background: ${c_red};
 		width: 100% !important;
+	}
+	.lds-dual-ring {
+		left: 50%;
+		top: 50%;
+		position: absolute;
+		transform: translate(-50%, -50%);
+		display: inline-block;
+		width: 80px;
+		height: 80px;
+	}
+	.lds-dual-ring:after {
+		content: ' ';
+		display: block;
+		width: 64px;
+		height: 64px;
+		margin: 8px;
+		border-radius: 50%;
+		border: 6px solid #f1404b;
+		border-color: #f1404b transparent #f1404b transparent;
+		animation: lds-dual-ring 1.2s linear infinite;
+	}
+	@keyframes lds-dual-ring {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
 	}
 `;
