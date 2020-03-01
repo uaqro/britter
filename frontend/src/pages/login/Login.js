@@ -23,9 +23,6 @@ const Login = props => {
   return (
     <div style={{background:'#e2e8f0', height:'100vh'}}>
       <LogHeaderStyles>
-      <div className='icon-container'>
-          <Logo className='icon'/>
-      </div>
         <h4>Iniciar sesión</h4>
         <span>
             Si aun no tienes una cuenta, crea una {" "}

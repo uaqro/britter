@@ -4,7 +4,8 @@ import { useHistory, Link } from "react-router-dom";
 import {useStateContext} from '../../hooks/useStateContext';
 import { SignupStyles, SignupHeaderStyles } from './SignupStyles';
 import { MyContext } from "../../contexts/context";
-import { ReactComponent as Logo } from '../../assets/assets_Search_2020-03-01/britte-r.svg';
+import Logo from '../../components/Logo/Logo';
+
 const Signup = props => {
   const context = useContext(MyContext);
   const  [state, action]  = useStateContext();
@@ -22,9 +23,7 @@ const Signup = props => {
   return (
     <div style={{background:'#e2e8f0', height:'100vh', width:'100vw'}}>
       <SignupHeaderStyles>
-      <div className='icon-container'>
-          <Logo className='icon'/>
-      </div>
+        
         <h4>Iniciar sesión</h4>
         <span>
             Si aun no tienes una cuenta, crea una {" "}
