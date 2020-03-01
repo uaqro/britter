@@ -20,6 +20,9 @@ export const ElementBoxStyles = styled.div`
 		border-radius: 3px;
 		border: solid 1px #71af53;
 		background-color: #9ce07b;
+		transform: translateY(-50px);
+		position: relative;
+		z-index: 10;
 		span {
 			color: #71af53;
 			font-size: 12px;
